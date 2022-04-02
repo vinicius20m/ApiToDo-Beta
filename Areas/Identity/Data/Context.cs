@@ -1,0 +1,30 @@
+using ApiToDo.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using ApiToDo.Models;
+
+namespace ApiToDo.Areas.Identity.Data;
+
+public class Context : IdentityDbContext<User>
+{
+    
+    public virtual DbSet<Ambiente> Ambientes { get; set; }
+    public virtual DbSet<Quadro> Quadros { get; set; }
+    public virtual DbSet<Item> Items { get; set; }
+    public virtual DbSet<Quadro_Permission> Quadro_Permissions { get; set; }
+    public virtual DbSet<Permission_Type> Permission_Types { get; set; }
+
+    public Context(DbContextOptions<Context> options)
+        : base(options)
+    {
+    }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+        // Customize the ASP.NET Identity model and override the defaults if needed.
+        // For example, you can rename the ASP.NET Identity table names and more.
+        // Add your customizations after calling base.OnModelCreating(builder);
+    }
+}
